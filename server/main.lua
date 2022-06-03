@@ -71,7 +71,6 @@ RegisterNetEvent('dv_yacht:server:hacking', function()
       local Player = QBCore.Functions.GetPlayer(src)
          if Player.Functions.RemoveItem(Config.removeitem, 1) then
             TriggerClientEvent('dv_yacht:client:yacht:hack',src)
-            TriggerClientEvent('dv_yacht:client:yacht:hack1',-1)
             money = true
          end
      end
@@ -137,6 +136,14 @@ AddEventHandler('dv_yacht:server:end', function()
       TriggerClientEvent('dv_yacht:client:ending',-1)
       TriggerEvent('dv_yacht:server:log',"Robbery ended","**".."Steam name:"..' '.."**"..name.."\n ".."**".."License:".."**"..' '..license.."\n".."**".."Discord:".."**"..' '..id1.."\n".."**".."Fivem:"..' '.."**"..id2.."\n".."**".."IP:"..' '.."**"..id3,EE2F06)
 end
+end)
+RegisterNetEvent('dv_yacht:hack', function(data)
+    if data == 'success' then
+       TriggerClientEvent('dv_yacht:client:yacht:hack1','false')
+    end
+    if data == 'fail' then
+      TriggerClientEvent('dv_yacht:client:yacht:hack1','true')
+    end
 end)
 RegisterNetEvent('dv_yacht:server:yacht:callpd', function()
    if robbery == true then

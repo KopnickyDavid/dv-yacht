@@ -1,14 +1,11 @@
-----LOCAL----
+----BLIPS----
 local blip = nil
 local blip1 = nil
+----LOCAL----
 local robbery = false
-local boat = false
 local yacht = false
-local yacht1 = false
-local money = false
-local money1 = false
+local hacked = false
 local props = true
-local ending = false
 ----THREADS----
 CreateThread(function ()
     while true do
@@ -16,13 +13,12 @@ CreateThread(function ()
       if robbery == false then 
       local ped = PlayerPedId()
       local player = GetEntityCoords(ped)
-      local pos = Config.coords[1]
-      local distance = #(player - pos)
+      local distance = #(player - Config.Locations.Start)
       local sleep = true
     if distance < Config.distance then
         sleep = false
-        Draw3DText(pos.x, pos.y, pos.z,  Config.DrawTexts[1])
-          DrawMarker(27, pos.x, pos.y, pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 2.001,2.0001,0.5001,0,155,255, 100, false, true, 2, false, false, false, false)
+        Draw3DText(Config.Locations.Start.x, Config.Locations.Start.y, Config.Locations.Start.z+0.25,  Config.DrawTexts[1])
+          DrawMarker(27, Config.Locations.Start.x, Config.Locations.Start.y, Config.Locations.Start.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 2.001,2.0001,0.5001,0,155,255, 100, false, true, 2, false, false, false, false)
     if IsControlJustReleased(0, 38) then
             TriggerEvent('dv_yacht:client:start')
             TriggerServerEvent('dv_yacht:server:props')
@@ -39,21 +35,19 @@ CreateThread(function ()
       Wait(0)
       local sleep = true
       if robbery == true then
-      if boat == true then
       local ped = PlayerPedId()
       local player = GetEntityCoords(ped)
-      local pos = Config.coords[2]
+      local pos = Config.Locations.Boat
       local distance = #(player - pos)
     if distance < Config.distance then
         sleep = false
-        Draw3DText(pos.x, pos.y, pos.z,  Config.DrawTexts[2])
-          DrawMarker(27, pos.x, pos.y, pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 2.001,2.0001,0.5001,0,155,255, 100, false, true, 2, false, false, false, false)
+        Draw3DText(pos.x, pos.y, pos.z+0.25,  Config.DrawTexts[2])
+        DrawMarker(27, pos.x, pos.y, pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 2.001,2.0001,0.5001,0,155,255, 100, false, true, 2, false, false, false, false)
     if IsControlJustReleased(0, 38) then
             TriggerEvent('dv_yacht:client:boat')
             TriggerServerEvent('dv_yacht:server:boat1')
           end
         end
-      end
     end
     if sleep then
           Wait(1000)
@@ -68,11 +62,11 @@ CreateThread(function ()
       if yacht == true then
       local ped = PlayerPedId()
       local player = GetEntityCoords(ped)
-      local pos = Config.coords[3]
+      local pos = Config.Locations.Yacht
       local distance = #(player - pos)
     if distance < Config.distance then
         sleep = false
-        Draw3DText(pos.x, pos.y, pos.z,  Config.DrawTexts[3])
+        Draw3DText(pos.x, pos.y, pos.z+0.25,  Config.DrawTexts[3])
           DrawMarker(27, pos.x, pos.y, pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 2.001,2.0001,0.5001,0,155,255, 100, false, true, 2, false, false, false, false)
     if IsControlJustReleased(0, 38) then
             TriggerServerEvent('dv_yacht:server:yacht:start')
@@ -90,14 +84,14 @@ CreateThread(function ()
     Wait(0)
     local sleep = true
   if robbery == true then
-   if yacht1 == true then
+   if hacked == true then
     local ped = PlayerPedId()
     local player = GetEntityCoords(ped)
-    local pos = Config.coords[4]
+    local pos = Config.Locations.hacking
     local distance = #(player - pos)
   if distance < Config.distance then
       sleep = false
-      Draw3DText(pos.x, pos.y, pos.z,  Config.DrawTexts[4])
+      Draw3DText(pos.x, pos.y, pos.z+0.25,  Config.DrawTexts[4])
         DrawMarker(27, pos.x, pos.y, pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 2.001,2.0001,0.5001,0,155,255, 100, false, true, 2, false, false, false, false)
   if IsControlJustReleased(0, 38) then
 TriggerServerEvent('dv_yacht:server:hacking')
@@ -114,83 +108,51 @@ CreateThread(function ()
 while true do
   Wait(0)
   local sleep = true
-if robbery == true then
- if money == true then
+    if robbery  then
+  for k, collect in pairs(Config.Locations.Collect) do 
   local ped = PlayerPedId()
   local player = GetEntityCoords(ped)
-  local pos = Config.coords[5]
+  local pos = collect
   local distance = #(player - pos)
-if distance < Config.distance then
+    if distance < Config.distance then
     sleep = false
-    Draw3DText(pos.x, pos.y, pos.z,  Config.DrawTexts[5])
+    Draw3DText(pos.x, pos.y, pos.z+0.25,  Config.DrawTexts[5])
       DrawMarker(27, pos.x, pos.y, pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 2.001,2.0001,0.5001,0,155,255, 100, false, true, 2, false, false, false, false)
-if IsControlJustReleased(0, 38) then
-  TriggerEvent('dv_yacht:client:takingmoney')
-  TriggerServerEvent('dv_yacht:server:events',money)
+    if IsControlJustReleased(0, 38) then
+  money()  
       end
-     end
    end
+  end
 end
 if sleep then
-            Wait(1000)
+          Wait(1000)
       end
    end
 end)
-CreateThread(function ()
-while true do
-  Wait(0)
-  local sleep = true
-if robbery == true then
- if money1 == true then
-  local ped = PlayerPedId()
-  local player = GetEntityCoords(ped)
-  local pos = Config.coords[6]
-  local distance = #(player - pos)
-if distance < Config.distance then
-    sleep = false
-    Draw3DText(pos.x, pos.y, pos.z,  Config.DrawTexts[5])
-      DrawMarker(27, pos.x, pos.y, pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 2.001,2.0001,0.5001,0,155,255, 100, false, true, 2, false, false, false, false)
-if IsControlJustReleased(0, 38) then
-TriggerEvent('dv_yacht:client:takingmoney')
-TriggerServerEvent('dv_yacht:server:events',money1)
-        end
-      end
-    end
-  end
-if sleep then
-            Wait(1000)
-      end
-   end
-end)
+
 CreateThread(function ()
   while true do
     Wait(0)
     local sleep = true
   if robbery == true then
-  if ending == true then
     local ped = PlayerPedId()
     local player = GetEntityCoords(ped)
-    local pos = Config.coords[7]
-    local distance = #(player - pos)
+    local distance = #(player - Config.Locations.Ending)
   if distance < Config.distance then
       sleep = false
-      Draw3DText(pos.x, pos.y, pos.z,  Config.DrawTexts[6])
-        DrawMarker(27, pos.x, pos.y, pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 2.001,2.0001,0.5001,0,155,255, 100, false, true, 2, false, false, false, false)
+      Draw3DText(Config.Locations.Ending.x, Config.Locations.Ending.y, Config.Locations.Ending.z+0.25,  Config.DrawTexts[6])
+        DrawMarker(27, Config.Locations.Ending.x, Config.Locations.Ending.y, Config.Locations.Ending.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 2.001,2.0001,0.5001,0,155,255, 100, false, true, 2, false, false, false, false)
   if IsControlJustReleased(0, 38) then
   TriggerEvent('dv_yacht:client:endstart')
           end
         end
       end
-    end
   if sleep then
             Wait(1000)
       end
   end
 end)
 ----EVENTS----
-RegisterNetEvent('dv_yacht:client:money', function(data)
-  data = false
-end)
 RegisterNetEvent('dv_yahct:client:propis', function()
   if props then 
     local trolly = CreateObject(Config.moneyprop,-2070.64, -1019.95, 4.88, true, false, false)
@@ -222,7 +184,7 @@ end
         end})
     end
 end)
-RegisterNetEvent('dv_yacht:client:takingmoney', function()
+function money()
   if Config.framework == 'qb' then
     local QBCore = exports['qb-core']:GetCoreObject()
   QBCore.Functions.Progressbar(Config.progressbartext[2], Config.progressbartext[2], math.random(3000, 7000), false, true, {
@@ -241,9 +203,10 @@ end
                   TriggerServerEvent('dv_yacht:server:GiveItem')
           end})
     end 
-end)
+end
+
 RegisterNetEvent('dv_yacht:client:start', function()
-  local blipcoorcs = Config.coords[8]
+  local blipcoorcs = Config.Locations.Boat
   blip = AddBlipForCoord(blipcoorcs)
   SetBlipSprite(blip, 410)
   SetBlipAsShortRange(blip, true)
@@ -256,7 +219,6 @@ RegisterNetEvent('dv_yacht:client:start', function()
 end)
 RegisterNetEvent('dv_yacht:client:start1', function()
   robbery = true
-  boat = true
 end)
 RegisterNetEvent('dv_yacht:client:ending', function()
 RemoveBlip(blip)
@@ -264,12 +226,7 @@ RemoveBlip(blip1)
 blip = nil
 blip1 = nil
 robbery = false
-boat = false
 yacht = false
-yacht1 = false
-money = false
-money1 = false
-ending = false
 end)
 RegisterNetEvent('dv_yacht:client:vehicle', function()
   if Config.framework == 'qb' then
@@ -282,7 +239,7 @@ RegisterNetEvent('dv_yacht:client:vehicle', function()
   end)
 RegisterNetEvent('dv_yacht:client:boat', function()
   TriggerServerEvent('dv_yacht:server:boat')
-  local blipcoorcs1 = Config.coords[9]
+  local blipcoorcs1 = Config.Locations.Yacht
   blip1 = AddBlipForCoord(blipcoorcs1)
   SetBlipSprite(blip1, 455)
   SetBlipAsShortRange(blip1, true)
@@ -294,12 +251,11 @@ RegisterNetEvent('dv_yacht:client:boat', function()
 end)
 RegisterNetEvent('dv_yacht:client:boat1', function()
   yacht = true
-  boat = false
 end)
 RegisterNetEvent('dv_yacht:client:yacht:start', function()
   blip = nil
   yacht = false
-  yacht1 = true
+  hacked = true
 end)
 
 RegisterNetEvent('dv_yacht:client:yacht:hack')
@@ -307,19 +263,15 @@ AddEventHandler('dv_yacht:client:yacht:hack', function()
     TriggerEvent("mhacking:show")
     TriggerEvent("mhacking:start",8,35,hacking)
 end)
-RegisterNetEvent('dv_yacht:client:yacht:hack1', function()
-  yacht1 = false
-  money = true
-  money1 = true
-ending = true
-end)
 
 
 RegisterNetEvent('dv_yacht:client:yacht:callpd:success', function()
+  TriggerServerEvent('dv_yacht:hack','success')
   Wait(Config.successpdtime)
   TriggerServerEvent('dv_yacht:server:yacht:radio:pd')
 end)
 RegisterNetEvent('dv_yacht:client:yacht:callpd:fail', function()
+  TriggerServerEvent('dv_yacht:hack','fail')
   Wait(Config.failpdtime)
   TriggerServerEvent('dv_yacht:server:yacht:radio:pd')
 end)
@@ -329,11 +281,12 @@ function hacking(success)
 	if success then
 		TriggerEvent('mhacking:hide')
     TriggerEvent('dv_yacht:client:yacht:callpd:success')
+    hacked = false
 	else
 		TriggerEvent('mhacking:hide')
     TriggerEvent('dv_yacht:client:yacht:callpd:fail')
-        yacht1 = true
-	end
+hacked = true
+  end
 end
 --drawtext
 function Draw3DText(x, y, z, text)
