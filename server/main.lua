@@ -4,7 +4,7 @@ local money = false
 local spawned = true
 local pedd = true
 ----EVENTS----
-if GetCurrentResourceName() ~= 'dv_yacht' then
+if GetCurrentResourceName() ~= 'dv-yacht' then
    print('[dv-yacht]: ^1You are not allowed to change the resource name ^0')
    return
 end
