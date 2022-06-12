@@ -3,7 +3,7 @@ game 'gta5'
 
 author 'DV-SCRIPT'
 description 'Script that allows you to add more illegal roleplay with Yacht heist.'
-version '1.0'
+version '2.0'
 
 server_scripts {
 	'config/server_config.lua',

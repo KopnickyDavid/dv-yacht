@@ -1,17 +1,16 @@
 Config = {}
 ----FRAMEWORK----
-Config.framework = 'qb' --esx/qb
+Config.usable = 'esx' -- qb/esx Registering usable item 
 Config.alert = 'QB' -- QB/linden
 ----WEBHOOK----
-Config.webhook = "https://discord.com/api/webhooks/xxxx" --discord webhooks
+Config.webhook = "https://discord.com/api/webhooks/xxxx" --discord webhook
 ----VEHICLES----
 Config.boat = 0x3FD5AA2F -- boat that spawn https://wiki.rage.mp/index.php?title=Vehicles
 ----MONEY/ITEM----
 Config.getMin = 5 -- minimum item give
 Config.getMax = 20 -- maximum item give
 Config.cashroll = 1000 -- ho mutch cashroll give money after use
-Config.usable = true -- if you want to make cashroll usable
-Config.removeitem = 'laptop' -- item for hacking
+Config.removeitem = 'laptop' -- item for hacking NOT WORKING WITH ESX
 Config.giveitem = "cashroll" -- what item it give
 ----PEDS----
 Config.startlocation = vector3(131.54, -1183.78, 29.5) -- location where starting ped spawn
