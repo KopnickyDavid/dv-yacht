@@ -1,8 +1,8 @@
 Config = {}
 ----FRAMEWORK----
-Config.vehicle = 'esx' -- qb/esx
+Config.vehicle = 'qb' -- qb/esx
 Config.boat = 0x3FD5AA2F --use only for QB
-Config.progressbar = 'esx' --qb/esx progressbar type
+Config.progressbar = 'qb' --qb/esx progressbar type
 ----ALERT----
 Config.successpdtime = 120000--Time to notify pd after success hacking in ms
 Config.failpdtime = 60000 --Time to notify pd after failed hacking in ms
