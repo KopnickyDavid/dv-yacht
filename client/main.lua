@@ -1,14 +1,5 @@
 ----BLIPS----
-local blip = nil
-local blip1 = nil
-----LOCAL----
-local spawned = true
-local robbery = false
-local yacht = false
-local hacked = false
-local props = true
-local m1  = false
-local m2 = false
+local blip,blip1,spawned,robbery,yacht,hacked,props,m1,m2 = nil,nil,true,false,false,false,true,false,false
 ----THREADS----
 CreateThread(function ()
     while true do
@@ -16,15 +7,8 @@ CreateThread(function ()
       local sleep = true
       local ped = PlayerPedId()
       local player = GetEntityCoords(ped)
-      local distance = #(player - Config.Locations.Start)
-      local distance1 = #(player - Config.Locations.Ending)
-      local distance2 = #(player - Config.Locations.Boat)
-      local distance3 = #(player - Config.Locations.Yacht)
-      local distance4 = #(player - Config.Locations.hacking)
-      local distance5 = #(player - Config.Locations.Collect[1])
-      local distance6 = #(player - Config.Locations.Collect[2])
       if robbery == false then 
-        if distance < Config.distance then
+        if #(player - Config.Locations.Start) < Config.distance then
           sleep = false
           Draw3DText(Config.Locations.Start.x, Config.Locations.Start.y, Config.Locations.Start.z+0.25,  Config.DrawTexts[1])
           DrawMarker(27, Config.Locations.Start.x, Config.Locations.Start.y, Config.Locations.Start.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 2.001,2.0001,0.5001,0,155,255, 100, false, true, 2, false, false, false, false)
@@ -35,7 +19,7 @@ CreateThread(function ()
       end
     end
     if robbery  then 
-      if distance1 < Config.distance then
+      if #(player - Config.Locations.Ending) < Config.distance then
         sleep = false
         Draw3DText(Config.Locations.Ending.x, Config.Locations.Ending.y, Config.Locations.Ending.z+0.25,  Config.DrawTexts[6])
         DrawMarker(27, Config.Locations.Ending.x, Config.Locations.Ending.y, Config.Locations.Ending.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 2.001,2.0001,0.5001,0,155,255, 100, false, true, 2, false, false, false, false)
@@ -43,7 +27,7 @@ CreateThread(function ()
         endstart()
     end
   end
-      if distance2 < Config.distance then
+      if  #(player - Config.Locations.Boat) < Config.distance then
         sleep = false
         Draw3DText(Config.Locations.Boat.x, Config.Locations.Boat.y, Config.Locations.Boat.z+0.25,  Config.DrawTexts[2])
         DrawMarker(27, Config.Locations.Boat.x, Config.Locations.Boat.y, Config.Locations.Boat.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 2.001,2.0001,0.5001,0,155,255, 100, false, true, 2, false, false, false, false)
@@ -51,7 +35,7 @@ CreateThread(function ()
         TriggerServerEvent('dv_yacht:server:boat1')
         end
       end
-    if distance3 < Config.distance and yacht then
+    if #(player - Config.Locations.Yacht) < Config.distance and yacht then
         sleep = false
         Draw3DText(Config.Locations.Yacht.x, Config.Locations.Yacht.y, Config.Locations.Yacht.z+0.25,  Config.DrawTexts[3])
         DrawMarker(27, Config.Locations.Yacht.x, Config.Locations.Yacht.y, Config.Locations.Yacht.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 2.001,2.0001,0.5001,0,155,255, 100, false, true, 2, false, false, false, false)
@@ -59,7 +43,7 @@ CreateThread(function ()
         TriggerServerEvent('dv_yacht:server:yacht:start')
           end
         end
-    if distance4 < Config.distance and hacked then
+    if #(player - Config.Locations.hacking) < Config.distance and hacked then
           sleep = false
           Draw3DText(Config.Locations.hacking.x, Config.Locations.hacking.y, Config.Locations.hacking.z+0.25,  Config.DrawTexts[4])
           DrawMarker(27, Config.Locations.hacking.x, Config.Locations.hacking.y, Config.Locations.hacking.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 2.001,2.0001,0.5001,0,155,255, 100, false, true, 2, false, false, false, false)
@@ -67,7 +51,7 @@ CreateThread(function ()
       TriggerServerEvent('dv_yacht:server:hacking',GetPlayerServerId(PlayerId()))
     end
       end
-    if distance5 < Config.distance and m1 then
+    if  #(player - Config.Locations.Collect[1]) < Config.distance and m1 then
          sleep = false
          Draw3DText(Config.Locations.Collect[1].x, Config.Locations.Collect[1].y, Config.Locations.Collect[1].z+0.25,  Config.DrawTexts[5])
          DrawMarker(27, Config.Locations.Collect[1].x, Config.Locations.Collect[1].y, Config.Locations.Collect[1].z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 2.001,2.0001,0.5001,0,155,255, 100, false, true, 2, false, false, false, false)
@@ -76,7 +60,7 @@ CreateThread(function ()
          m1 = false
         end
      end
-    if distance6 < Config.distance and m2 then
+    if  #(player - Config.Locations.Collect[2]) < Config.distance and m2 then
          sleep = false
          Draw3DText(Config.Locations.Collect[2].x, Config.Locations.Collect[2].y, Config.Locations.Collect[2].z+0.25,  Config.DrawTexts[5])
          DrawMarker(27, Config.Locations.Collect[2].x, Config.Locations.Collect[2].y, Config.Locations.Collect[2].z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 2.001,2.0001,0.5001,0,155,255, 100, false, true, 2, false, false, false, false)
@@ -87,7 +71,7 @@ CreateThread(function ()
        end
     end
     if sleep then
-            Wait(1000)
+            Wait(500)
         end
     end    
 end)
@@ -155,9 +139,7 @@ RegisterNetEvent('dv_yacht:client:boat', function()
   yacht = true
 end)
 RegisterNetEvent('dv_yacht:client:yacht:start', function()
-  blip = nil
-  yacht = false
-  hacked = true
+  blip,yacht,hacked = nil,false,true
 end)
 RegisterNetEvent('dv_yacht:client:yacht:hack', function()
   TriggerEvent("mhacking:show")
@@ -189,12 +171,7 @@ end
 function ending()
 RemoveBlip(blip)
 RemoveBlip(blip1)
-blip = nil
-blip1 = nil
-robbery = false
-yacht = false
-spawned = true
-hacked = false
+blip,blip1,robbery,yacht,spawned,hacked = nil,nil,false,false,true,false
 end
 function blips()
   local blipcoorcs1 = Config.Locations.Yacht
@@ -226,9 +203,7 @@ function hacking(success)
 	if success then
 		TriggerEvent('mhacking:hide')
     TriggerEvent('dv_yacht:client:yacht:callpd:success')
-    hacked = false
-    m1 = true
-    m2 = true
+    hacked,m1,m2 = false,true,true
 	else
 		TriggerEvent('mhacking:hide')
     TriggerEvent('dv_yacht:client:yacht:callpd:fail')
