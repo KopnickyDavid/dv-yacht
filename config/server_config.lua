@@ -1,7 +1,7 @@
 Config = {}
 ----FRAMEWORK----
 Config.usable = 'qb' -- qb/esx Registering usable item 
-Config.alert = 'QB' -- QB/linden
+Config.alert = 'QB' -- QB/linden/CD
 ----WEBHOOK----
 Config.webhook = "https://discord.com/api/webhooks/xxxx" --discord webhook
 ----VEHICLES----
