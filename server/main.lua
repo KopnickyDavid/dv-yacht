@@ -113,6 +113,24 @@ RegisterNetEvent('dv_yacht:server:yacht:callpd', function()
              description = "Yacht is under robbery",
              }
          TriggerClientEvent("qb-phone:client:addPoliceAlert", -1, alertData)
+     elseif Config.alert == 'CD' then
+            TriggerClientEvent('cd_dispatch:AddNotification', -1, {
+    job_table = {'police'},
+    coords = vector3(-2083.6292, -1018.2227, 12.7819, 56.7514),
+    title = '211 - Yacht',
+    message = 'Yacht is being robbed',
+    flash = 0,
+    unique_id = tostring(math.random(0000000,9999999)),
+    blip = {
+        sprite = 455,
+        scale = 1.2,
+        colour = 3,
+        flashes = false,
+        text = '211 - Yacht',
+        time = (5*60*1000),
+        sound = 1,
+    }
+})
     end
   end
 end)
