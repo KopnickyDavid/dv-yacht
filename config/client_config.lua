@@ -3,6 +3,8 @@ Config = {}
 Config.vehicle = 'esx' -- qb/esx
 Config.boat = 0x3FD5AA2F --use only for QB
 Config.progressbar = 'esx' --qb/esx progressbar type
+--FUEL--
+Config.fuel = 'LegacyFuel' -- Fuel Script Export Your Server Useing Eg. ps-fuel , LegacyFuel
 ----ALERT----
 Config.successpdtime = 120000--Time to notify pd after success hacking in ms
 Config.failpdtime = 60000 --Time to notify pd after failed hacking in ms
