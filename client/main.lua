@@ -214,7 +214,7 @@ function vehicle()
   if Config.vehicle == 'qb' and spawned then
     local QBCore = exports['qb-core']:GetCoreObject()
     QBCore.Functions.SpawnVehicle(Config.boat, function(veh)
-        exports['LegacyFuel']:SetFuel(veh, 100)
+        exports[Config.fuel]:SetFuel(veh, 100)
         TriggerEvent("vehiclekeys:client:SetOwner", QBCore.Functions.GetPlate(veh))
         spawned = false
     end, vector3(-1183.87, -1019.24, 0.67), true)
