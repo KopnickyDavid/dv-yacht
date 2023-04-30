@@ -1,9 +1,9 @@
 Config = {}
 ----FRAMEWORK----
-Config.usable = 'qb' -- qb/esx Registering usable item 
-Config.alert = 'QB' -- QB/linden/CD
+Config.framework = 'esx' -- qb/esx Registering usable item 
+Config.alert = 'linden' -- QB/linden/CD
 ----WEBHOOK----
-Config.webhook = "https://discord.com/api/webhooks/xxxx" --discord webhook
+Config.webhook = "https://discord.com/api/webhooks/xxxxxxx" --discord webhook
 ----VEHICLES----
 Config.boat = 0x3FD5AA2F -- boat that spawn https://wiki.rage.mp/index.php?title=Vehicles
 ----MONEY/ITEM----
