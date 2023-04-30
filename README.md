@@ -8,7 +8,6 @@ https://youtu.be/RyI5fkzuFCs
 <p>
   [QBCORE framework] or
   [ESX framework]
-  <p>https://github.com/DvScriptsSK/dv-lib
 </p>
 <P>Mhacking 
 
