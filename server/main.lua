@@ -107,7 +107,7 @@ RegisterServerEvent('dv_yacht:server:end', function()
    local src = source
    local name = GetPlayerName(src)
    local license = GetPlayerIdentifier(src, 0)
-   local distance = #(GetEntityCoords(GetPlayerPed(src)) - Config.Locations.Start)
+   local distance = #(GetEntityCoords(GetPlayerPed(src)) - Config.startlocation)
    if robbery then
        robbery = false
        TriggerClientEvent('dv_yacht:client:ending', -1)
